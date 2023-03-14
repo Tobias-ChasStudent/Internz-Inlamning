@@ -7,7 +7,8 @@ module.exports = {
         exo2: '"Exo 2", sans-serif',
       },
       colors: {
-        primary: "white",
+        primary: "#ffffff",
+        accnet: "#000000",
         background: "#F1F8FF",
       },
       gridTemplateColumns: {

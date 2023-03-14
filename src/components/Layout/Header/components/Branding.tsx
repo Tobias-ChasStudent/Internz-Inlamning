@@ -1,4 +1,4 @@
 const Branding = () => {
-  return <div className="text-2xl">Branding</div>;
+  return <div className="text-2xl ">Internz</div>;
 };
 export default Branding;
