@@ -2,6 +2,7 @@ import { HiBars3BottomLeft } from "react-icons/hi2";
 import { AnimatePresence } from "framer-motion";
 import { NavLinks } from "../../constants";
 import Link from "./Link";
+import { motion } from "framer-motion";
 
 type MenuProps = {
   active: boolean;
@@ -16,22 +17,30 @@ const Menu = ({ active, toggleActive }: MenuProps) => {
           <HiBars3BottomLeft className="text-2xl" />
         </button>
       </div>
-      {active && (
-        <nav className="absolute top-14 left-2 rounded-xl bg-primary">
-          <ul>
-            <AnimatePresence>
-              {NavLinks.map((link, index) => (
-                <Link
-                  path={link.path}
-                  text={link.text}
-                  indicatorMode={"vertical"}
-                  key={index}
-                />
-              ))}
-            </AnimatePresence>
-          </ul>
-        </nav>
-      )}
+      <AnimatePresence>
+        {active && (
+          <motion.nav
+            initial={{ height: 0 }}
+            animate={{ height: "fit-content" }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.1 }}
+            className="absolute top-14 left-2 overflow-hidden rounded-xl bg-primary"
+          >
+            <ul>
+              <AnimatePresence>
+                {NavLinks.map((link, index) => (
+                  <Link
+                    path={link.path}
+                    text={link.text}
+                    indicatorMode={"vertical"}
+                    key={index}
+                  />
+                ))}
+              </AnimatePresence>
+            </ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   );
 };
