@@ -1,7 +1,4 @@
 ﻿# jobchaser
-
-‣潪换慨敳 ੲ
-
 ```
 .env.local
 VITE_FIREBASE_KE = ""
