@@ -28,7 +28,7 @@ const SearchBar = ({ toggleActive }: Props) => {
             ref={searchFieldRef}
           ></input>
         </div>
-        <button onClick={toggleActive}>
+        <button type="button" onClick={toggleActive}>
           <BiFilter className="text-2xl" />
         </button>
       </div>
