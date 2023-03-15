@@ -6,15 +6,14 @@ type Props = {
 };
 
 const SearchBar = ({ toggleActive }: Props) => {
-  //   const searchFieldRef: React.MutableRefObject<object> = useRef();
-  const searchFieldRef = useRef<HTMLDivElement | null>(null);
+  const searchFieldRef = useRef<HTMLInputElement | null>(null);
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!searchFieldRef) return;
-
-    searchFieldRef.current.value = "";
-    console.log("submit search");
+    if (searchFieldRef.current) {
+      searchFieldRef.current.value = "";
+      console.log("submit search");
+    }
   };
 
   return (
