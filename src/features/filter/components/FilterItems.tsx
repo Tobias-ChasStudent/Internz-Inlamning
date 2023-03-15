@@ -23,8 +23,8 @@ const FilterItem = (props: object) => {
           Clear
         </button>
       </div>
-      {placeholderObject.items.map((item) => (
-        <div className="mb-2 flex justify-between">
+      {placeholderObject.items.map((item, index) => (
+        <div className="mb-2 flex justify-between" key={index}>
           <label>
             <input type="checkbox" className="mr-4" />
             <span>{"filter tag name"}</span>
