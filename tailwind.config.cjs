@@ -8,8 +8,12 @@ module.exports = {
       },
       colors: {
         primary: "#ffffff",
+        secondary: "#efefef",
         accnet: "#000000",
         background: "#F1F8FF",
+      },
+      textColor: {
+        primary: "#0b0b0b",
       },
       gridTemplateColumns: {
         main: `minmax(auto, 1200px)`,
