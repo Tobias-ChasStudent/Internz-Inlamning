@@ -1,9 +1,9 @@
 ﻿# jobchaser
 
 ‣潪换慨敳 ੲ
-.env.local
+
 ```
-Firebase config:
+.env.local
 VITE_FIREBASE_KE = ""
 VITE_FIREBASE_DOMAIN = ""
 VITE_FIREBASE_PROJECT_ID = ""
