@@ -1,6 +1,7 @@
 ﻿# jobchaser
 
 ‣潪换慨敳 ੲ
+.env.local
 ```
 Firebase config:
 VITE_FIREBASE_KE = ""
