@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/user/userSlice";
 import finderReducer from "../features/finder/finderSlice";
+import filterReducer from "../features/filter/filterSlice";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     finder: finderReducer,
+    filter: filterReducer,
   },
 });
 
