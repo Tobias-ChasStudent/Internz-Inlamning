@@ -14,6 +14,7 @@ module.exports = {
       },
       textColor: {
         primary: "#0b0b0b",
+        secondary: "#545454",
       },
       gridTemplateColumns: {
         main: `minmax(auto, 1200px)`,

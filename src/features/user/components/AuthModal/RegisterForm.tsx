@@ -2,9 +2,10 @@ import ContinueWithGoogleButton from "./ContinueWithGoogleButton";
 import { useForm, SubmitHandler, FieldError } from "react-hook-form";
 import { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { registerWithEmailAndPassword } from "../../api";
 
 type RegisterFormProps = {
-  type: "student" | "company";
+  type: AccountType;
   setMode: (mode: RegisterMode) => void;
 };
 
@@ -26,13 +27,22 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
   const {
     register,
     handleSubmit,
-    setError,
     watch,
     formState: { errors },
   } = useForm<RegisterFormTypes>();
 
   const onSubmit: SubmitHandler<RegisterFormTypes> = async (data) => {
     console.log(data);
+    try {
+      await registerWithEmailAndPassword(
+        data.email,
+        data.password,
+        data.name,
+        type
+      );
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -66,6 +76,7 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
                     ? (value) => value === watch("password")
                     : undefined,
                 required: true,
+                minLength: 6,
                 maxLength: 24,
               })}
               className={inputClassName(
