@@ -111,7 +111,7 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
             <IoClose />
           </button>
         </div>
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {mode === "register" && <Register />}
           {mode === "login" && <Login />}
           {mode === "verify" && <Verify />}
