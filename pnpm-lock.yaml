@@ -20,12 +20,11 @@ specifiers:
   react-router-dom: ^6.9.0
   tailwindcss: ^3.2.7
   typescript: ^4.9.3
-  uuid: ^9.0.0
   vite: ^4.1.0
 
 dependencies:
-  '@types/uuid': 9.0.1
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
+  '@types/uuid': 9.0.1
   firebase: 9.17.2
   framer-motion: 10.3.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -34,7 +33,6 @@ dependencies:
   react-icons: 4.8.0_react@18.2.0
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
   react-router-dom: 6.9.0_biqbaboplfbrettd7655fr4n2y
-  uuid: 9.0.0
 
 devDependencies:
   '@types/react': 18.0.28
@@ -1144,10 +1142,6 @@ packages:
     resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: false
 
-  /@types/uuid/9.0.1:
-    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
-    dev: false
-
   /@vitejs/plugin-react/3.1.0_vite@4.1.4:
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -2208,11 +2202,6 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
-
-  /uuid/9.0.0:
-    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
-    hasBin: true
-    dev: false
 
   /vite/4.1.4:
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
