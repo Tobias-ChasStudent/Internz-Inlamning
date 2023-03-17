@@ -7,7 +7,7 @@ const inputClassName = (error: FieldError | undefined) =>
     error ? "border-2 border-red-400" : "border-2 border-transparent"
   }`;
 
-const Company = () => {
+const CompanyForm = () => {
   const {
     register,
     handleSubmit,
@@ -72,4 +72,4 @@ const Company = () => {
   );
 };
 
-export default Company;
+export default CompanyForm;

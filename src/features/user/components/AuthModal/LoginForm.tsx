@@ -10,7 +10,7 @@ const inputClassName = (error: FieldError | undefined) =>
     error ? "border-2 border-red-400" : "border-2 border-transparent"
   }`;
 
-const Login = () => {
+const LoginForm = () => {
   const [showPasswords, setShowPasswords] = useState(false);
 
   const togglePasswordVisibility = (
@@ -84,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

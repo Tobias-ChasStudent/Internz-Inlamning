@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { IoClose } from "react-icons/io5";
-import Company from "./Company";
-import Login from "./Login";
 import Register from "./Register";
 import Verify from "./Verify";
 import { AnimatePresence, motion } from "framer-motion";
 import { logout } from "../../api";
+import LoginForm from "./LoginForm";
+import CompanyForm from "./CompanyForm";
 
 type AuthModalProps = {
   initialMode: "register" | "verify" | "company";
@@ -113,9 +113,9 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
         </div>
         <AnimatePresence initial={false}>
           {mode === "register" && <Register />}
-          {mode === "login" && <Login />}
+          {mode === "login" && <LoginForm />}
           {mode === "verify" && <Verify />}
-          {mode === "company" && <Company />}
+          {mode === "company" && <CompanyForm />}
         </AnimatePresence>
         {getBottomText()}
       </motion.div>
