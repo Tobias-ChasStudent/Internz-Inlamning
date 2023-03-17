@@ -7,7 +7,14 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"; // import the uuid library
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -116,7 +123,6 @@ export const registerWithGoogle = async (type: AccountType): Promise<void> => {
       ...(type === "company" ? { company: null } : {}),
     };
 
-    // Get a reference to the Firestore document for the new user.
     const userDocRef = doc(db, "users", user.uid);
 
     await setDoc(userDocRef, userData);
@@ -128,7 +134,23 @@ export const registerWithGoogle = async (type: AccountType): Promise<void> => {
 export const loginWithGoogle = async (): Promise<void> => {
   const provider = new GoogleAuthProvider();
   try {
-    await signInWithPopup(auth, provider);
+    const { user } = await signInWithPopup(auth, provider);
+
+    if (!user) return;
+
+    const userDocRef = doc(db, "users", user.uid);
+    const userSnapshot = await getDoc(userDocRef);
+    if (!userSnapshot.exists()) {
+      const userData: UserType = {
+        id: user.uid,
+        email: user.email as string,
+        username: user.displayName as string,
+        photo: user.photoURL,
+        type: "student",
+      };
+      await setDoc(userDocRef, userData);
+      await reloadCurrentUser();
+    }
   } catch (error) {
     throw error;
   }
@@ -141,7 +163,6 @@ export const logout = async (): Promise<void> => {
 export const reloadCurrentUser = async (): Promise<void> => {
   if (auth.currentUser) {
     await auth.currentUser.reload();
-    await auth.currentUser.getIdToken(true);
     const userDataChangedEvent = new CustomEvent("user-data-changed");
     window.dispatchEvent(userDataChangedEvent);
   }
