@@ -1,9 +1,8 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import useToggle from "../../../hooks/useToggle";
-import type { RootState } from "../../../store";
-import { useSelector, useDispatch } from "react-redux";
 import FilterCategories from "./FilterCategories";
+import { useAppDispatch, useAppSelector } from "../../../app/reduxHooks";
 
 const handleClearAllFilters = () => {
   console.log("Clearing all filters");
@@ -11,8 +10,8 @@ const handleClearAllFilters = () => {
 
 const Filter = () => {
   const [active, toggleActive] = useToggle();
-  const filters = useSelector((state: RootState) => state.filter.filters);
-  const dispatch = useDispatch();
+  const filters = useAppSelector((state) => state.filter.filters);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="rounded-xl bg-primary p-4">
