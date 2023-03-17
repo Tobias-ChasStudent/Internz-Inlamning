@@ -117,7 +117,7 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
           {mode === "verify" && <Verify />}
           {mode === "company" && <Company />}
         </AnimatePresence>
-        <div className="flex justify-center gap-1">{getBottomText()}</div>
+        {getBottomText()}
       </motion.div>
     </motion.div>,
     document.body

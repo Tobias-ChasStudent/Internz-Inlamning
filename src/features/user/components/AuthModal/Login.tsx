@@ -5,6 +5,11 @@ import { loginWithEmailAndPassword } from "../../api";
 import { motion } from "framer-motion";
 import ContinueWithGoogleButton from "./ContinueWithGoogleButton";
 
+const inputClassName = (error: FieldError | undefined) =>
+  `h-10 w-full rounded-xl bg-secondary pl-3 pr-10 text-sm outline-none ${
+    error ? "border-2 border-red-400" : "border-2 border-transparent"
+  }`;
+
 const Login = () => {
   const [showPasswords, setShowPasswords] = useState(false);
 
@@ -29,11 +34,6 @@ const Login = () => {
       console.error(e);
     }
   };
-
-  const inputClassName = (error: FieldError | undefined) =>
-    `h-10 w-full rounded-xl bg-secondary pl-3 pr-10 text-sm outline-none ${
-      error ? "border-2 border-red-400" : "border-2 border-transparent"
-    }`;
 
   return (
     <motion.div
