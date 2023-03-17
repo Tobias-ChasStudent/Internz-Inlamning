@@ -25,7 +25,7 @@ const Company = () => {
 
   return (
     <motion.div
-      initial={{ translateX: -32 }}
+      initial={{ translateX: 32 }}
       animate={{ translateX: 0 }}
       className="flex flex-col items-center gap-3"
     >
