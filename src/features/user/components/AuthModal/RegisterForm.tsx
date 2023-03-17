@@ -3,6 +3,7 @@ import { useForm, SubmitHandler, FieldError } from "react-hook-form";
 import { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { registerWithEmailAndPassword } from "../../api";
+import { motion } from "framer-motion";
 
 type RegisterFormProps = {
   type: AccountType;
@@ -46,8 +47,12 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <ContinueWithGoogleButton />
+    <motion.div
+      initial={{ translateX: 32 }}
+      animate={{ translateX: 0 }}
+      className="flex flex-col items-center gap-3"
+    >
+      <ContinueWithGoogleButton type={type} />
       or
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -105,7 +110,7 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
           Register
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

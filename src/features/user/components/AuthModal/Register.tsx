@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoBusiness, IoChevronForward } from "react-icons/io5";
 import { FaUserGraduate } from "react-icons/fa";
 import RegisterForm from "./RegisterForm";
-
+import { motion } from "framer-motion";
 const Register = () => {
   const [mode, setMode] = useState<RegisterMode>(null);
 
@@ -12,7 +12,11 @@ const Register = () => {
     return <RegisterForm setMode={setMode} type="company" />;
   else
     return (
-      <>
+      <motion.div
+        initial={{ translateX: -32 }}
+        animate={{ translateX: 0 }}
+        className="flex flex-col gap-3"
+      >
         <button
           onClick={() => setMode("company")}
           className="flex items-center justify-between gap-3 rounded-xl bg-secondary px-3 py-2"
@@ -33,7 +37,7 @@ const Register = () => {
           </div>
           <IoChevronForward />
         </button>
-      </>
+      </motion.div>
     );
 };
 

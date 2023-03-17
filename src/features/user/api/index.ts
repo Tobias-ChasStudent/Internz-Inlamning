@@ -6,7 +6,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  User,
 } from "firebase/auth";
 import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid"; // import the uuid library
@@ -101,6 +100,31 @@ export const loginWithEmailAndPassword = async (
   }
 };
 
+export const registerWithGoogle = async (type: AccountType): Promise<void> => {
+  const provider = new GoogleAuthProvider();
+  try {
+    const { user } = await signInWithPopup(auth, provider);
+
+    if (!user) return;
+
+    const userData: UserType = {
+      id: user.uid,
+      email: user.email as string,
+      username: user.displayName as string,
+      photo: user.photoURL,
+      type,
+      ...(type === "company" ? { company: null } : {}),
+    };
+
+    // Get a reference to the Firestore document for the new user.
+    const userDocRef = doc(db, "users", user.uid);
+
+    await setDoc(userDocRef, userData);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const loginWithGoogle = async (): Promise<void> => {
   const provider = new GoogleAuthProvider();
   try {
@@ -118,5 +142,7 @@ export const reloadCurrentUser = async (): Promise<void> => {
   if (auth.currentUser) {
     await auth.currentUser.reload();
     await auth.currentUser.getIdToken(true);
+    const userDataChangedEvent = new CustomEvent("user-data-changed");
+    window.dispatchEvent(userDataChangedEvent);
   }
 };

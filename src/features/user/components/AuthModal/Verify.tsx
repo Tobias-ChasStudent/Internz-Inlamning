@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import { reloadCurrentUser } from "../../api";
+import { motion } from "framer-motion";
 
 const Verify = () => {
   const handleCheckVerify = async () => {
@@ -7,7 +7,11 @@ const Verify = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3 text-center">
+    <motion.div
+      initial={{ translateX: 32 }}
+      animate={{ translateX: 0 }}
+      className="flex flex-col gap-3 text-center"
+    >
       <div>
         <div className="font-semibold">Verification link sent!</div>
         <div>Check your inbox to complete registration</div>
@@ -21,7 +25,7 @@ const Verify = () => {
       >
         Check verification
       </button>
-    </div>
+    </motion.div>
   );
 };
 

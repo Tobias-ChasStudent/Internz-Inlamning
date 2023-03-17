@@ -1,7 +1,6 @@
-import ContinueWithGoogleButton from "./ContinueWithGoogleButton";
 import { useForm, SubmitHandler, FieldError } from "react-hook-form";
-import { useState } from "react";
-import { registerCompany, registerWithEmailAndPassword } from "../../api";
+import { registerCompany, reloadCurrentUser } from "../../api";
+import { motion } from "framer-motion";
 
 const inputClassName = (error: FieldError | undefined) =>
   `h-10 w-full rounded-xl bg-secondary pl-3 pr-10 text-sm outline-none ${
@@ -12,22 +11,24 @@ const Company = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<CompanyFormTypes>();
 
   const onSubmit: SubmitHandler<CompanyFormTypes> = async (data) => {
     try {
       await registerCompany(data);
+      await reloadCurrentUser();
     } catch (e) {
       console.error(e);
     }
   };
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <ContinueWithGoogleButton />
-      or
+    <motion.div
+      initial={{ translateX: -32 }}
+      animate={{ translateX: 0 }}
+      className="flex flex-col items-center gap-3"
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col gap-3"
@@ -67,7 +68,7 @@ const Company = () => {
           Create
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
