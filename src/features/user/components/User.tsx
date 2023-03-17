@@ -9,9 +9,6 @@ import UserModal from "./UserModal/UserModal";
 const User = () => {
   const [active, toggleActive] = useToggle();
   const { user } = useAuthState();
-  const [ModalComponent, setModalComponent] = useState<JSX.Element | null>(
-    null
-  );
 
   const getModal = () => {
     if (user) {
