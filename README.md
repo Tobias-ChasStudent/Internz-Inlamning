@@ -2,7 +2,7 @@
 Internz is a dynamic online platform designed to connect students with valuable internship opportunities. By showcasing a wide range of internships posted by companies across various industries
 
 ## Running the React App
-1. Install dependencies project dependencies.
+1. Install project dependencies.
 ```
 pnpm install
 ```
