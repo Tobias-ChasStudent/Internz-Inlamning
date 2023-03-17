@@ -1,7 +1,8 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import useToggle from "../../../hooks/useToggle";
-import FilterItems from "./FilterItems";
+import FilterCategories from "./FilterCategories";
+import { useAppDispatch, useAppSelector } from "../../../app/reduxHooks";
 
 const handleClearAllFilters = () => {
   console.log("Clearing all filters");
@@ -9,17 +10,8 @@ const handleClearAllFilters = () => {
 
 const Filter = () => {
   const [active, toggleActive] = useToggle();
-
-  const placeholderArray: Array<any> = [
-    { name: "category 1", items: [{ asd: 123 }, { asd: 123 }, { asd: 123 }] },
-    { name: "category 1", items: [{ asd: 123 }, { asd: 123 }, { asd: 123 }] },
-  ];
-
-  type Props = {
-    key: number;
-    cat: object;
-    index: boolean;
-  };
+  const filters = useAppSelector((state) => state.filter.filters);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="rounded-xl bg-primary p-4">
@@ -36,8 +28,12 @@ const Filter = () => {
               Clear all
             </button>
           </div>
-          {placeholderArray.map((cat, index) => (
-            <FilterItems key={index} />
+          {filters.map((category, index: number) => (
+            <FilterCategories
+              key={index}
+              category={category}
+              catIndex={index}
+            />
           ))}
         </>
       )}
