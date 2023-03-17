@@ -1,59 +1,53 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../../../lib/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import { User } from "firebase/auth";
 
-type AuthStateuser = UserType & { verified: boolean };
+type AuthStateUser = UserType & { verified: boolean };
 
 const useAuthState = () => {
-  const [user, setUser] = useState<AuthStateuser | null>(null);
+  const [user, setUser] = useState<AuthStateUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Subscribe to Firebase auth state changes
-    const unsubscribeAuth = auth.onAuthStateChanged((authUser) => {
+    const updateUser = async (authUser: User | null) => {
       if (authUser) {
-        // Get Firestore document reference for the authenticated user
         const userRef = doc(db, "users", authUser.uid);
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.exists()
+          ? ({
+              id: authUser.uid,
+              verified: authUser.emailVerified,
+              ...userDoc.data(),
+            } as AuthStateUser)
+          : null;
 
-        // Subscribe to real-time updates to the user document
-        const unsubscribeSnapshot = onSnapshot(
-          userRef,
-          (userDoc) => {
-            // Update user state with 'verified' property and document data
-            const userData = userDoc.exists()
-              ? ({
-                  id: authUser.uid,
-                  verified: authUser.emailVerified,
-                  ...userDoc.data(),
-                } as AuthStateuser)
-              : null;
-            setUser(userData);
-            setLoading(false);
-          },
-          (error) => {
-            console.error(error);
-            setLoading(false);
-          }
-        );
-
-        // Unsubscribe from snapshot listener when the auth state changes or the component is unmounted
-        return () => {
-          unsubscribeSnapshot();
-        };
+        setUser(userData);
+        setLoading(false);
       } else {
-        // Set user state to null when not authenticated
         setUser(null);
         setLoading(false);
       }
-    });
+    };
 
-    // Unsubscribe from auth state changes when the component is unmounted
+    const handleUserDataChanged = () => {
+      updateUser(auth.currentUser);
+    };
+
+    // Subscribe to auth state changes
+    const unsubscribeAuth = auth.onAuthStateChanged(updateUser);
+
+    // Listen for custom event 'user-data-changed'
+    window.addEventListener("user-data-changed", handleUserDataChanged);
+
     return () => {
+      // Unsubscribe from auth state changes
       unsubscribeAuth();
+      // Remove event listener when the component is unmounted
+      window.removeEventListener("user-data-changed", handleUserDataChanged);
     };
   }, []);
 
-  // Return user object and loading status
   return { user, loading };
 };
 

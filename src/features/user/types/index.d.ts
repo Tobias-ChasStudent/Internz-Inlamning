@@ -14,6 +14,11 @@ type CompanyFormTypes = {
   description: string;
 };
 
+type LoginFormTypes = {
+  email: string;
+  password: string;
+};
+
 type AccountType = "student" | "company";
 
 type UserType = {
