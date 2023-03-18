@@ -7,8 +7,14 @@ import { clearAllFilters } from "../filterSlice";
 
 const Filter = () => {
   const [active, toggleActive] = useToggle();
-  const filters = useAppSelector((state) => state.filter.filters);
+  const selectFilters = useAppSelector((state) => state.filter.filters);
+  const selectNumberActiveFilters = useAppSelector((state) => {
+    return state.filter.filters
+      .flatMap((category) => [...category.items])
+      .reduce((acc, curItem) => acc + (curItem.active ? 1 : 0), 0);
+  });
   const dispatch = useAppDispatch();
+  console.log(selectNumberActiveFilters);
 
   const handleClearAllFilters = () => {
     console.log("Clearing all filters");
@@ -23,14 +29,16 @@ const Filter = () => {
         <>
           <div className="my-2 flex justify-between">
             <div>
-              Filter{" "}
-              <span className="rounded-lg bg-gray-200 p-1">{"amount"}</span>
+              Filter
+              <span className="ml-2 rounded-lg bg-gray-200 p-1">
+                {selectNumberActiveFilters}
+              </span>
             </div>
             <button className="text-[#5fa3e1]" onClick={handleClearAllFilters}>
               Clear all
             </button>
           </div>
-          {filters.map((category, index: number) => (
+          {selectFilters.map((category, index: number) => (
             <FilterCategories
               key={index}
               category={category}
