@@ -1,6 +1,6 @@
 import React from "react";
 import FilterItem from "./FilterItem";
-import { setFilter } from "../filterSlice";
+import { setFilter, clearFilterCategory } from "../filterSlice";
 import { useAppDispatch } from "../../../app/reduxHooks";
 
 type ItemsTypes = {
@@ -19,12 +19,13 @@ type PropsTypes = {
   catIndex: number;
 };
 
-const handleClearCategory = () => {
-  console.log("Clearing category");
-};
-
 const FilterCategories = ({ category, catIndex }: PropsTypes) => {
   const dispatch = useAppDispatch();
+
+  const handleClearCategory = () => {
+    console.log("Clearing category");
+    dispatch(clearFilterCategory({ catIndex }));
+  };
 
   const handleCheckTag = (tagIndex: number) => {
     dispatch(setFilter({ tagIndex: tagIndex, catIndex: catIndex }));

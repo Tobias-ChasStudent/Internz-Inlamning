@@ -5,6 +5,8 @@ export interface filterSlice {
   filters: Array<any>;
 }
 
+type FilterItems = { tag: string; amount: number; active: boolean };
+
 const initialState: filterSlice = {
   filters: [
     // Temporary values for testing!
@@ -39,8 +41,22 @@ const filterSlice = createSlice({
         action.payload.tagIndex
       ].active = !curState;
     },
+    clearAllFilters: (state) => {
+      state.filters.forEach((category) =>
+        category.items.forEach((item: FilterItems) => (item.active = false))
+      );
+    },
+    clearFilterCategory: (
+      state,
+      action: PayloadAction<{ catIndex: number }>
+    ) => {
+      state.filters[action.payload.catIndex].items.forEach(
+        (item: FilterItems) => (item.active = false)
+      );
+    },
   },
 });
 
-export const { setFilter } = filterSlice.actions;
+export const { setFilter, clearAllFilters, clearFilterCategory } =
+  filterSlice.actions;
 export default filterSlice.reducer;
