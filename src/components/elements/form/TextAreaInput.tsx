@@ -25,15 +25,15 @@ const TextAreaInput = <T extends FieldValues>({
   }`;
 
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id}>{label}</label>
+    <label htmlFor={id} className="flex flex-col gap-1">
+      {label}
       <textarea
         id={id}
         {...register(id as Path<T>, { required: true })}
         placeholder={placeholder}
         className={inputClassName}
       />
-    </div>
+    </label>
   );
 };
 

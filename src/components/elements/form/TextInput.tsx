@@ -25,8 +25,8 @@ const TextInput = <T extends FieldValues>({
   }`;
 
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id}>{label}</label>
+    <label htmlFor={id} className="flex flex-col gap-1">
+      {label}
       <input
         id={id}
         type="text"
@@ -34,7 +34,7 @@ const TextInput = <T extends FieldValues>({
         {...register(id as Path<T>, { required: true })}
         className={inputClassNames}
       />
-    </div>
+    </label>
   );
 };
 
