@@ -1,10 +1,8 @@
-import { FieldError, SubmitHandler, useForm } from "react-hook-form";
-import { IoCheckmark } from "react-icons/io5";
-
-const inputClassName = (error: FieldError | undefined) =>
-  `h-10 w-full rounded-xl bg-secondary pl-3 pr-10 text-sm outline-none ${
-    error ? "border-2 border-red-400" : "border-2 border-transparent"
-  }`;
+import { SubmitHandler, useForm } from "react-hook-form";
+import DateInput from "../../../components/elements/form/DateInput";
+import MultipleCheckboxInputs from "../../../components/elements/form/MultipleCheckboxInputs";
+import TextAreaInput from "../../../components/elements/form/TextAreaInput";
+import TextInput from "../../../components/elements/form/TextInput";
 
 const New = () => {
   const {
@@ -22,7 +20,7 @@ const New = () => {
   };
 
   return (
-    <div className="grid grid-flow-row grid-cols-[minmax(auto,800px)] justify-center gap-3 rounded-xl bg-primary p-3">
+    <div className="grid grid-flow-row grid-cols-[minmax(auto,640px)] justify-center gap-3 rounded-xl bg-primary p-3">
       <header className="text-center text-2xl text-primary">
         What position are you hiring for?
       </header>
@@ -30,60 +28,75 @@ const New = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col gap-3"
       >
-        <div className="flex flex-col gap-1">
-          <label htmlFor="position text-sm">Position</label>
-          <input
-            id="position"
-            type="text"
-            placeholder="Ex. Fullstack Developer "
-            {...register("position", { required: true })}
-            className={inputClassName(errors.position)}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            {...register("description", { required: true })}
-            placeholder="Describe the responsibilities"
-            className="rounded-xl bg-secondary p-3 text-sm outline-none"
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <div className="text-primary">Scope</div>
-          <label
-            htmlFor="full_time"
-            className="flex items-center gap-2 rounded-xl bg-secondary py-2 px-3"
-          >
-            <div className="relative grid h-4 w-4 place-items-center">
-              <input
-                id="full_time"
-                type="checkbox"
-                {...register("scope", { required: true })}
-                value="full_time"
-                className="peer absolute h-full w-full appearance-none rounded-[4px] bg-tertiary transition-colors duration-200 checked:bg-accnet"
-              />
-              <IoCheckmark className="aboslute pointer-events-none z-10 hidden text-xs text-white peer-checked:block" />
-            </div>
-            Full time
-          </label>
-          <label
-            htmlFor="part_time"
-            className="flex items-center gap-2 rounded-xl bg-secondary py-2 px-3"
-          >
-            <div className="relative grid h-4 w-4 place-items-center">
-              <input
-                id="part_time"
-                type="checkbox"
-                {...register("scope", { required: true })}
-                value="part_time"
-                className="peer absolute h-full w-full appearance-none rounded-[4px] bg-tertiary transition-colors duration-200 checked:bg-accnet"
-              />
-              <IoCheckmark className="aboslute pointer-events-none z-10 hidden text-xs text-white peer-checked:block" />
-            </div>
-            Part time
-          </label>
-        </div>
+        <TextInput
+          id="position"
+          label="Position"
+          register={register}
+          error={errors.position}
+          placeholder="Ex. Fullstack Developer"
+        />
+        <TextAreaInput
+          id="description"
+          label="Description"
+          register={register}
+          error={errors.description}
+          placeholder="Describe the position's job duties and responsibilities"
+        />
+        <MultipleCheckboxInputs
+          title="Scope"
+          id="scope"
+          error={errors.scope}
+          register={register}
+          checkboxes={[
+            {
+              value: "full_time",
+              label: "Full time",
+            },
+            {
+              value: "part_time",
+              label: "Part time",
+            },
+          ]}
+        />
+        <DateInput
+          id="start_date"
+          label="Start date"
+          register={register}
+          error={errors.start_date}
+        />
+        <DateInput
+          id="end_date"
+          label="End date"
+          register={register}
+          error={errors.end_date}
+        />
+        <TextInput
+          id="city"
+          label="City"
+          register={register}
+          error={errors.city}
+          placeholder="Ex. Stockholm"
+        />
+        <MultipleCheckboxInputs
+          title="Location"
+          id="location"
+          error={errors.location}
+          register={register}
+          checkboxes={[
+            {
+              label: "On site",
+              value: "on_site",
+            },
+            {
+              label: "Remote",
+              value: "remote",
+            },
+            {
+              label: "Hybrid",
+              value: "hybrid",
+            },
+          ]}
+        />
         <button type="submit" className="rounded-xl bg-black py-2 text-white">
           Submit
         </button>
