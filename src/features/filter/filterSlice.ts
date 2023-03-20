@@ -3,7 +3,10 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface filterSlice {
   filters: Array<any>;
+  searchTerm: Array<string>;
 }
+
+type FilterItems = { tag: string; amount: number; active: boolean };
 
 const initialState: filterSlice = {
   filters: [
@@ -25,6 +28,7 @@ const initialState: filterSlice = {
       ],
     },
   ],
+  searchTerm: [],
 };
 
 const filterSlice = createSlice({
@@ -39,8 +43,33 @@ const filterSlice = createSlice({
         action.payload.tagIndex
       ].active = !curState;
     },
+    clearAllFilters: (state) => {
+      state.filters.forEach((category) =>
+        category.items.forEach((item: FilterItems) => (item.active = false))
+      );
+    },
+    clearFilterCategory: (
+      state,
+      action: PayloadAction<{ catIndex: number }>
+    ) => {
+      state.filters[action.payload.catIndex].items.forEach(
+        (item: FilterItems) => (item.active = false)
+      );
+    },
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload.trim().split(" ");
+    },
+    RemoveSearchTerm: (state) => {
+      state.searchTerm = [];
+    },
   },
 });
 
-export const { setFilter } = filterSlice.actions;
+export const {
+  setFilter,
+  clearAllFilters,
+  clearFilterCategory,
+  setSearchTerm,
+  RemoveSearchTerm,
+} = filterSlice.actions;
 export default filterSlice.reducer;

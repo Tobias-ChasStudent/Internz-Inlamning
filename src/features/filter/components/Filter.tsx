@@ -3,15 +3,17 @@ import SearchBar from "./SearchBar";
 import useToggle from "../../../hooks/useToggle";
 import FilterCategories from "./FilterCategories";
 import { useAppDispatch, useAppSelector } from "../../../app/reduxHooks";
-
-const handleClearAllFilters = () => {
-  console.log("Clearing all filters");
-};
+import { clearAllFilters } from "../filterSlice";
 
 const Filter = () => {
   const [active, toggleActive] = useToggle();
   const filters = useAppSelector((state) => state.filter.filters);
   const dispatch = useAppDispatch();
+
+  const handleClearAllFilters = () => {
+    console.log("Clearing all filters");
+    dispatch(clearAllFilters());
+  };
 
   return (
     <div className="rounded-xl bg-primary p-4">
