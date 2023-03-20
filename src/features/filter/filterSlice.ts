@@ -39,7 +39,12 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     setAllFilters: (state, action: PayloadAction<any>) => {
-      state.filters = action.payload;
+      const filters = action.payload;
+      state.filters = filters.forEach(
+        (category: { name: string; items: Array<FilterItems> }) =>
+          category.items.forEach((item) => (item.active = false))
+      );
+      state.filters = filters;
     },
     setFilter: (state, action: PayloadAction<any>) => {
       const curState =

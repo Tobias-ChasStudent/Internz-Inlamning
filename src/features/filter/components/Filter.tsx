@@ -4,9 +4,10 @@ import useToggle from "../../../hooks/useToggle";
 import FilterCategories from "./FilterCategories";
 import { useAppDispatch, useAppSelector } from "../../../app/reduxHooks";
 import { clearAllFilters } from "../filterSlice";
-import { getTags } from "../api/index";
+import { getTags, postTag } from "../api/index";
 
 const Filter = () => {
+  // Select from redux store
   const selectFilters = useAppSelector((state) => state.filter.filters);
   const selectIsError = useAppSelector((state) => state.filter.error.isError);
   const selectErrorMessage = useAppSelector(
@@ -19,14 +20,14 @@ const Filter = () => {
   });
   const dispatch = useAppDispatch();
 
+  // Toggle show filters
   const [active, toggleActive] = useToggle();
 
   const handleClearAllFilters = () => {
-    console.log("Clearing all filters");
     dispatch(clearAllFilters());
   };
 
-  // load tags from Firestore
+  // Load tags from Firestore
   getTags();
 
   return (

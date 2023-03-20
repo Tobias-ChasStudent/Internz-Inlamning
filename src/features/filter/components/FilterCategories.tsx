@@ -1,7 +1,8 @@
 import React from "react";
 import FilterItem from "./FilterItem";
 import { setFilter, clearFilterCategory } from "../filterSlice";
-import { useAppDispatch } from "../../../app/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../app/reduxHooks";
+import { getTags, postTag } from "../api/index";
 
 type ItemsTypes = {
   tag: string;
@@ -20,6 +21,8 @@ type PropsTypes = {
 };
 
 const FilterCategories = ({ category, catIndex }: PropsTypes) => {
+  const selectFilters = useAppSelector((state) => state.filter.filters);
+
   const dispatch = useAppDispatch();
 
   const handleClearCategory = () => {
