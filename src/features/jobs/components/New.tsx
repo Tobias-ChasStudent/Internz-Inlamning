@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import DateInput from "../../../components/elements/form/DateInput";
 import MultipleCheckboxInputs from "../../../components/elements/form/MultipleCheckboxInputs";
+import TagInput from "../../../components/elements/form/TagInput";
 import TextAreaInput from "../../../components/elements/form/TextAreaInput";
 import TextInput from "../../../components/elements/form/TextInput";
 
@@ -8,6 +9,7 @@ const New = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<NewFormTypes>();
 
@@ -97,6 +99,7 @@ const New = () => {
             },
           ]}
         />
+        <TagInput name="tags" control={control} />
         <button type="submit" className="rounded-xl bg-black py-2 text-white">
           Submit
         </button>
