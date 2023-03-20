@@ -1,11 +1,10 @@
-import React from "react";
-import { Filter } from "../../filter/index";
+import JobCard from "./JobCard";
 
 const Finder = () => {
   return (
     <div>
       Finder
-      <Filter />
+      <JobCard />
     </div>
   );
 };
