@@ -6,6 +6,7 @@ import "./index.css";
 import { Finder } from "./features/finder";
 import { Provider } from "react-redux";
 import store from "./store/index";
+import New from "./features/jobs/components/New";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
         element: <Finder />,
       },
       {
-        path: "/test",
-        element: <Finder />,
+        path: "/company/new",
+        element: <New />,
       },
     ],
   },
