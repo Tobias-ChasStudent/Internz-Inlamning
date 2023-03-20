@@ -22,18 +22,20 @@ const MultipleCheckboxInputs = <T extends FieldValues>({
   error,
 }: MultipleCheckboxInputsProps<T>) => {
   return (
-    <div className="flex select-none flex-col gap-3">
+    <div className="flex select-none flex-col gap-1">
       <div className="text-primary">{title}</div>
-      {checkboxes.map(({ label, value }) => (
-        <CheckboxInput
-          key={value}
-          id={id}
-          label={label}
-          error={error}
-          value={value}
-          register={register}
-        />
-      ))}
+      <div className="flex flex-col gap-2">
+        {checkboxes.map(({ label, value }) => (
+          <CheckboxInput
+            key={value}
+            id={id}
+            label={label}
+            error={error}
+            value={value}
+            register={register}
+          />
+        ))}
+      </div>
     </div>
   );
 };
