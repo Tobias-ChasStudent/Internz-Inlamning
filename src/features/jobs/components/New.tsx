@@ -24,7 +24,7 @@ const New = () => {
   return (
     <div className="grid grid-flow-row grid-cols-[minmax(auto,640px)] justify-center gap-3 rounded-xl bg-primary p-3">
       <header className="text-center text-2xl text-primary">
-        What position are you hiring for?
+        Enter details about the new job.
       </header>
       <form
         onSubmit={handleSubmit(onSubmit)}
