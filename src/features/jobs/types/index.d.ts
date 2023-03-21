@@ -6,4 +6,5 @@ type NewFormTypes = {
   end_date: Date;
   city: string;
   location: "on_site" | "remote" | "hybrid";
+  tags: string[];
 };

@@ -4,22 +4,36 @@ import MultipleCheckboxInputs from "../../../components/elements/form/MultipleCh
 import TagInput from "../../../components/elements/form/TagInput";
 import TextAreaInput from "../../../components/elements/form/TextAreaInput";
 import TextInput from "../../../components/elements/form/TextInput";
+import { createJob } from "../api/createJob";
 
 const New = () => {
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<NewFormTypes>();
 
   const onSubmit: SubmitHandler<NewFormTypes> = async (data) => {
     try {
-      console.log(data);
+      await createJob(data);
+      reset();
     } catch (e) {
       console.error(e);
     }
   };
+
+  const scopeOptions = [
+    { value: "full_time", label: "Full time" },
+    { value: "part_time", label: "Part time" },
+  ];
+
+  const locationOptions = [
+    { value: "on_site", label: "On site" },
+    { value: "remote", label: "Remote" },
+    { value: "hybrid", label: "Hybrid" },
+  ];
 
   return (
     <div className="grid grid-flow-row grid-cols-[minmax(auto,640px)] justify-center gap-3 rounded-xl bg-primary p-3">
@@ -49,16 +63,7 @@ const New = () => {
           id="scope"
           error={errors.scope}
           register={register}
-          checkboxes={[
-            {
-              value: "full_time",
-              label: "Full time",
-            },
-            {
-              value: "part_time",
-              label: "Part time",
-            },
-          ]}
+          checkboxes={scopeOptions}
         />
         <DateInput
           id="start_date"
@@ -84,20 +89,7 @@ const New = () => {
           id="location"
           error={errors.location}
           register={register}
-          checkboxes={[
-            {
-              label: "On site",
-              value: "on_site",
-            },
-            {
-              label: "Remote",
-              value: "remote",
-            },
-            {
-              label: "Hybrid",
-              value: "hybrid",
-            },
-          ]}
+          checkboxes={locationOptions}
         />
         <TagInput name="tags" control={control} />
         <button type="submit" className="rounded-xl bg-black py-2 text-white">
