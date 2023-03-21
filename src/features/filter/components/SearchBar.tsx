@@ -9,7 +9,6 @@ type Props = {
 
 const SearchBar = ({ toggleActive }: Props) => {
   const searchTerm = useAppSelector((state) => state.filter.searchTerm);
-  console.log(searchTerm);
   const dispatch = useAppDispatch();
 
   const searchFieldRef = useRef<HTMLInputElement | null>(null);
