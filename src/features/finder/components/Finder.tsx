@@ -1,9 +1,10 @@
 import JobCard from "./JobCard";
+import { Filter } from "../../filter";
 
 const Finder = () => {
   return (
     <div>
-      Finder
+      <Filter />
       <JobCard />
     </div>
   );
