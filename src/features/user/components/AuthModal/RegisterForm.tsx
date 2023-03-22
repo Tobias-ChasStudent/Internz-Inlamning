@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { registerWithEmailAndPassword } from "../../api";
 import { motion } from "framer-motion";
+import TextInput from "../../../../components/elements/form/TextInput";
 
 type RegisterFormProps = {
   type: AccountType;

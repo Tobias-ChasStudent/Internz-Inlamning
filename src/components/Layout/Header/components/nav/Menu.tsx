@@ -24,7 +24,7 @@ const Menu = ({ active, toggleActive }: MenuProps) => {
             animate={{ height: "fit-content" }}
             exit={{ height: 0 }}
             transition={{ duration: 0.1 }}
-            className="absolute top-14 left-2 overflow-hidden rounded-xl bg-primary"
+            className="absolute top-14 left-2 mr-3 w-full overflow-hidden rounded-xl bg-primary"
           >
             <ul>
               <AnimatePresence>
