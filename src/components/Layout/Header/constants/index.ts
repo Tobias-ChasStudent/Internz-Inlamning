@@ -3,10 +3,10 @@ import { LinkType } from "../types";
 export const NavLinks: LinkType[] = [
   {
     path: "/",
-    text: "find jobs",
+    text: "Find jobs",
   },
   {
-    path: "/test",
-    text: "test",
+    path: "/company/new",
+    text: "Add job",
   },
 ];
