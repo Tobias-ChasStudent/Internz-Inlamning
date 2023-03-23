@@ -1,4 +1,5 @@
-import http from "http";
+import https from "https";
+import fs from "fs";
 import express from "express";
 import cors from "cors";
 import Fuse from "fuse.js";
@@ -6,7 +7,7 @@ import { db } from "./lib/firebase.js";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 
 import dotenv from "dotenv";
-dotenv.config({ path: "./lib/firebase.env.local" });
+dotenv.config({ path: "./node.env.local" });
 
 // State
 const state = { data: [] };
@@ -15,7 +16,7 @@ const state = { data: [] };
 const search = (searchQuery) => {
   const fuse = new Fuse(state.data, { includeScore: true, keys: ["test"] });
 
-  return fuse.search(searchQuery);
+  return { search: fuse.search(searchQuery) };
 };
 
 // Fetch data from Firebase
@@ -43,6 +44,9 @@ getTags();
 // Express server
 const app = express();
 app.use(cors());
+app.get("/", (req, res) => {
+  res.send("test");
+});
 app.post("/jobs/search/", async (req, res) => {
   console.log(req.headers.query);
   console.log(req.headers);
@@ -70,8 +74,16 @@ app.post("/jobs/search/", async (req, res) => {
   }
 });
 
-const server = http.createServer(app);
-const port = 3001;
+// Start https server
+/* const key = fs.readFileSync(__dirname + "/../certs/oblako.dufberg.se.key");
+const cert = fs.readFileSync(__dirname + "/../certs/oblako.dufberg.se.cer"); */
+const options = {
+  key: fs.readFileSync(process.env.HTTPS_SSL_KEY_PATH),
+  cert: fs.readFileSync(process.env.HTTPS_SSL_CERT_PATH),
+};
+console.log(options);
+const server = https.createServer(options, app);
+const port = process.env.EXPRESS_PORT;
 
 server.listen(port, () => {
   console.log(`listening on port ${port}`);
