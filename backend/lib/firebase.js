@@ -4,15 +4,15 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 import dotenv from "dotenv";
-dotenv.config({ path: "./lib/firebase.env.local" });
+dotenv.config({ path: "../.env.local" });
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_KEY,
-  authDomain: process.env.FIREBASE_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
+  apiKey: process.env.VITE_FIREBASE_KEY,
+  authDomain: process.env.VITE_FIREBASE_DOMAIN,
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_FIREBASE_SENDER_ID,
+  appId: process.env.VITE_FIREBASE_APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);
