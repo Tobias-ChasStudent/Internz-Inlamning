@@ -8,3 +8,8 @@ type NewFormTypes = {
   location: "on_site" | "remote" | "hybrid";
   tags: string[];
 };
+
+type Job = {
+  company: CompanyFormTypes;
+  user: UserType;
+} & NewFormTypes;
