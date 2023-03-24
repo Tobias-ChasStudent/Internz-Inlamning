@@ -11,8 +11,12 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@types/uuid": "^9.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "firebase": "^9.17.2",
     "framer-motion": "^10.3.0",
+    "fuse.js": "^6.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.5",
