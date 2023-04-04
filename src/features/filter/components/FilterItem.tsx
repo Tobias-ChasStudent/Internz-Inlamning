@@ -37,7 +37,6 @@ const FilterItem = ({ item, index, handleCheckTag }: Props) => {
         />
         <span>{item.tag}</span>
       </label>
-      <span className="text-gray-400">{item.amount}</span>
     </div>
   );
 };

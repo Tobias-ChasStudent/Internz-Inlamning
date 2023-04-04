@@ -11,6 +11,7 @@ type TextInputProps<T extends FieldValues> = {
   placeholder?: string;
   error?: FieldError;
   register: UseFormRegister<T>;
+  required?: boolean;
 };
 
 const TextInput = <T extends FieldValues>({
@@ -19,6 +20,7 @@ const TextInput = <T extends FieldValues>({
   placeholder,
   error,
   register,
+  required = false,
 }: TextInputProps<T>) => {
   const inputClassNames = `box-border py-2 px-3 w-full rounded-xl bg-secondary pr-10 text-sm outline-none ${
     error ? "border-2 border-red-400" : "border-2 border-transparent"
@@ -31,7 +33,7 @@ const TextInput = <T extends FieldValues>({
         id={id}
         type="text"
         placeholder={placeholder}
-        {...register(id as Path<T>, { required: true })}
+        {...register(id as Path<T>, { required })}
         className={inputClassNames}
       />
     </label>

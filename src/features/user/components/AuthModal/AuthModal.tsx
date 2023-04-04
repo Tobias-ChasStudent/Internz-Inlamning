@@ -87,14 +87,14 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
   };
 
   return createPortal(
-    <motion.div
+    <motion.aside
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onMouseDown={toggleActive}
       className="absolute inset-0 grid place-items-center bg-black/50"
     >
-      <motion.div
+      <motion.aside
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
@@ -105,6 +105,7 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
         <div className="flex items-center justify-between">
           {getTitle()}
           <button
+          title='close'
             onClick={toggleActive}
             className="rounded-xl bg-secondary p-3"
           >
@@ -118,8 +119,8 @@ const AuthModal = ({ initialMode, toggleActive }: AuthModalProps) => {
           {mode === "company" && <CompanyForm />}
         </AnimatePresence>
         {getBottomText()}
-      </motion.div>
-    </motion.div>,
+      </motion.aside>
+    </motion.aside>,
     document.body
   );
 };

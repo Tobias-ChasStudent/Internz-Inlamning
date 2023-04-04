@@ -47,8 +47,10 @@ const SearchBar = ({ toggleActive }: Props) => {
       <div className="flex justify-between">
         <div className="relative flex w-full">
           <BiSearch className="mr-4 text-2xl" />
+          <label className='hidden' htmlFor="search">Search for internships.</label>
           <input
-            className="w-full"
+            className='w-full'
+            id="search"
             type="search"
             placeholder="Search"
             ref={searchFieldRef}
@@ -56,6 +58,7 @@ const SearchBar = ({ toggleActive }: Props) => {
           ></input>
           {removeButtonValue && (
             <button
+              title="Clear search"
               type="button"
               className="absolute right-1 top-1"
               onClick={handleRemoveSearchTerm}
@@ -64,13 +67,14 @@ const SearchBar = ({ toggleActive }: Props) => {
             </button>
           )}
         </div>
-        <button type="button" onClick={toggleActive}>
+        <button type="button" onClick={toggleActive} title='Toggle filters'>
           <BiFilter className="text-2xl" />
         </button>
       </div>
       <button
+        title='Search internships.'
         type="submit"
-        className="mt-4 h-9 w-[100%] rounded-xl bg-black text-white"
+        className="mt-4 h-9 w-[100%] rounded-xl bg-black text-white hover:opacity-70"
       >
         Search
       </button>

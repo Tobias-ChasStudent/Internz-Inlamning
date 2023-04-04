@@ -7,7 +7,7 @@ const Verify = () => {
   };
 
   return (
-    <motion.div
+    <motion.aside
       initial={{ translateX: 32 }}
       animate={{ translateX: 0 }}
       className="flex flex-col gap-3 text-center"
@@ -25,7 +25,7 @@ const Verify = () => {
       >
         Check verification
       </button>
-    </motion.div>
+    </motion.aside>
   );
 };
 

@@ -16,18 +16,18 @@ const User = () => {
         return <AuthModal initialMode="verify" toggleActive={toggleActive} />;
       else if (user.type === "company" && !user.company)
         return <AuthModal initialMode="company" toggleActive={toggleActive} />;
-      return <UserModal toggleActive={toggleActive} />;
+      return <UserModal toggleActive={toggleActive} userId={user.id} />;
     }
 
     return <AuthModal initialMode="register" toggleActive={toggleActive} />;
   };
 
   useEffect(() => {
-    console.log(user);
+    //console.log(user);
   }, [user]);
 
   return (
-    <div className="relative">
+    <aside className="relative">
       <button
         onClick={toggleActive}
         className=" flex h-10 items-center rounded-xl max-sm:bg-white sm:bg-secondary"
@@ -40,19 +40,19 @@ const User = () => {
                 `https://ui-avatars.com/api/?name=${user.username}&background=random`
               }
               alt="Profile picture"
-              className="mr-2 h-full rounded-xl"
+              className="mr-2 h-full w-10 rounded-xl "
             />
             <div className="pr-3 max-sm:hidden">{user.username}</div>
           </>
         ) : (
           <>
             <HiUserCircle className="mx-2 text-2xl" />
-            <div className="pr-3 max-sm:hidden">Login/Register</div>
+            <i className="pr-3 hover:opacity-80 max-sm:hidden">Login/Register</i>
           </>
         )}
       </button>
       <AnimatePresence>{active && getModal()}</AnimatePresence>
-    </div>
+    </aside>
   );
 };
 

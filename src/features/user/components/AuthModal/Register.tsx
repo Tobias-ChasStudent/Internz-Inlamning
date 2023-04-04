@@ -13,7 +13,7 @@ const Register = () => {
       return <RegisterForm setMode={setMode} type="company" />;
     else
       return (
-        <motion.div
+        <motion.aside
           initial={{ translateX: -32 }}
           animate={{ translateX: 0 }}
           className="flex flex-col gap-3"
@@ -38,7 +38,7 @@ const Register = () => {
             </div>
             <IoChevronForward />
           </button>
-        </motion.div>
+        </motion.aside>
       );
   };
 

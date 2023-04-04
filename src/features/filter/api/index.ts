@@ -6,7 +6,7 @@ import { db } from "../../../lib/firebase";
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 
 // Collection name in DB
-const filterCollection = "filter-tags";
+const filterCollection = "filters";
 
 // Used to check if tag filters are loaded from DB
 let isLoadedTagsFromDB = false;
@@ -26,6 +26,7 @@ export const getTags = async () => {
 
     // Set all tag filters in redux store
     dispatch(setAllFilters(data.docs.map((doc) => ({ ...doc.data() }))));
+
   } catch (error) {
     console.error(error);
 

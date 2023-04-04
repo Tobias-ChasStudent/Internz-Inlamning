@@ -36,7 +36,7 @@ const New = () => {
   ];
 
   return (
-    <div className="grid grid-flow-row grid-cols-[minmax(auto,640px)] justify-center gap-3 rounded-xl bg-primary p-3">
+    <main className="grid grid-flow-row grid-cols-[minmax(auto,640px)] justify-center gap-3 rounded-xl bg-primary p-3">
       <header className="text-center text-2xl text-primary">
         Enter details about the new job.
       </header>
@@ -96,7 +96,7 @@ const New = () => {
           Submit
         </button>
       </form>
-    </div>
+    </main>
   );
 };
 

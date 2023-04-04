@@ -11,6 +11,7 @@ type MultipleCheckboxInputsProps<T extends FieldValues> = {
   error?: FieldError;
   id: string;
   checkboxes: CheckBoxInput[];
+  required?: boolean;
   register: UseFormRegister<T>;
 };
 
@@ -19,6 +20,7 @@ const MultipleCheckboxInputs = <T extends FieldValues>({
   checkboxes,
   register,
   id,
+  required = false,
   error,
 }: MultipleCheckboxInputsProps<T>) => {
   return (
@@ -33,6 +35,7 @@ const MultipleCheckboxInputs = <T extends FieldValues>({
             error={error}
             value={value}
             register={register}
+            required={required}
           />
         ))}
       </div>

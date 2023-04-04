@@ -48,7 +48,7 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
   };
 
   return (
-    <motion.div
+    <motion.aside
       initial={{ translateX: 32 }}
       animate={{ translateX: 0 }}
       className="flex flex-col items-center gap-3"
@@ -111,7 +111,7 @@ const RegisterForm = ({ type, setMode }: RegisterFormProps) => {
           Register
         </button>
       </form>
-    </motion.div>
+    </motion.aside>
   );
 };
 

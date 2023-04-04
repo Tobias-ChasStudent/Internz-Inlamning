@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   return (
-    <motion.div
+    <motion.aside
       initial={{ translateX: 32 }}
       animate={{ translateX: 0 }}
       className="flex flex-col items-center gap-3"
@@ -80,7 +80,7 @@ const LoginForm = () => {
           Login
         </button>
       </form>
-    </motion.div>
+    </motion.aside>
   );
 };
 

@@ -10,12 +10,14 @@ type DateInputProps<T extends FieldValues> = {
   id: string;
   error?: FieldError;
   register: UseFormRegister<T>;
+  required?: boolean;
 };
 
 const DateInput = <T extends FieldValues>({
   label,
   id,
   error,
+  required = false,
   register,
 }: DateInputProps<T>) => {
   const inputClassNames = `rounded-xl bg-secondary py-2 px-3 outline-none ${
@@ -28,7 +30,7 @@ const DateInput = <T extends FieldValues>({
       <input
         id={id}
         type="date"
-        {...register(id as Path<T>, { required: true })}
+        {...register(id as Path<T>, { required })}
         className={inputClassNames}
       />
     </label>

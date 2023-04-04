@@ -31,7 +31,7 @@ const Filter = () => {
   getTags();
 
   return (
-    <div className="rounded-xl bg-primary p-4">
+    <aside className="rounded-xl bg-primary p-4 mb-4">
       <SearchBar toggleActive={toggleActive} />
 
       {active && (
@@ -57,7 +57,7 @@ const Filter = () => {
           ))}
         </>
       )}
-    </div>
+    </aside>
   );
 };
 

@@ -13,7 +13,7 @@ const Menu = ({ active, toggleActive }: MenuProps) => {
   return (
     <>
       <div>
-        <button onClick={toggleActive} className="rounded-xl bg-primary p-2">
+        <button onClick={toggleActive} title="Toggle menu" className="rounded-xl bg-primary p-2">
           <HiBars3BottomLeft className="text-2xl" />
         </button>
       </div>

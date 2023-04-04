@@ -11,6 +11,7 @@ type CheckboxInputProps<T extends FieldValues> = {
   id: string;
   error?: FieldError;
   register: UseFormRegister<T>;
+  required?: boolean;
   value: string;
 };
 
@@ -19,6 +20,7 @@ const CheckboxInput = <T extends FieldValues>({
   id,
   error,
   register,
+  required = false,
   value,
 }: CheckboxInputProps<T>) => {
   const inputClassNames = `flex items-center gap-2 rounded-xl bg-secondary py-2 px-3 ${
@@ -31,7 +33,7 @@ const CheckboxInput = <T extends FieldValues>({
         <input
           id={value}
           type="checkbox"
-          {...register(id as Path<T>, { required: true })}
+          {...register(id as Path<T>, { required })}
           value={value}
           className="peer absolute h-full w-full appearance-none rounded-[4px] bg-tertiary transition-colors duration-200 checked:bg-accnet"
         />

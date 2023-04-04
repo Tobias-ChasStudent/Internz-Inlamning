@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/user/userSlice";
 import finderReducer from "../features/finder/finderSlice";
 import filterReducer from "../features/filter/filterSlice";
+// import {searchAPI} from '../features/finder/finderSlice'
 
 const store = configureStore({
   reducer: {
@@ -9,6 +10,8 @@ const store = configureStore({
     finder: finderReducer,
     filter: filterReducer,
   },
+/*   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(searchAPI.middleware),
+ */  
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -3,6 +3,7 @@ import { useController, Control } from "react-hook-form";
 interface TagInputProps {
   name: string;
   control: Control<any>;
+  required?: boolean;
 }
 
 type TagProps = {
@@ -11,7 +12,7 @@ type TagProps = {
   index: number;
 };
 
-const TagInput = ({ name, control }: TagInputProps) => {
+const TagInput = ({ name, control, required = false }: TagInputProps) => {
   const {
     field: { onChange, onBlur, value },
     fieldState: { error },
@@ -19,7 +20,7 @@ const TagInput = ({ name, control }: TagInputProps) => {
     name,
     control,
     defaultValue: [] as string[],
-    rules: { required: true },
+    rules: { required },
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,7 +41,7 @@ const TagInput = ({ name, control }: TagInputProps) => {
 
   return (
     <div className="flex flex-col gap-1 rounded-xl bg-white">
-      Tags
+      <div className="capitalize">{name}</div>
       <div className="flex flex-col gap-3">
         <input
           type="text"

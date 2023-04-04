@@ -7,6 +7,8 @@ import { Finder } from "./features/finder";
 import { Provider } from "react-redux";
 import store from "./store/index";
 import New from "./features/jobs/components/New";
+import Profile from "./features/user/components/profile/Profile";
+import Edit from "./features/user/components/edit/Edit";
 
 const router = createBrowserRouter([
   {
@@ -21,14 +23,22 @@ const router = createBrowserRouter([
         path: "/company/new",
         element: <New />,
       },
+      {
+        path: "/profile/:userId",
+        element: <Profile />,
+      },
+      {
+        path: "/profile/edit",
+        element: <Edit />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

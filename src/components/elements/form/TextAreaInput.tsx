@@ -10,6 +10,7 @@ type TextAreaInputProps<T extends FieldValues> = {
   id: string;
   placeholder?: string;
   error?: FieldError;
+  required?: boolean;
   register: UseFormRegister<T>;
 };
 
@@ -17,6 +18,7 @@ const TextAreaInput = <T extends FieldValues>({
   label,
   id,
   placeholder,
+  required = false,
   error,
   register,
 }: TextAreaInputProps<T>) => {
@@ -29,7 +31,7 @@ const TextAreaInput = <T extends FieldValues>({
       {label}
       <textarea
         id={id}
-        {...register(id as Path<T>, { required: true })}
+        {...register(id as Path<T>, { required })}
         placeholder={placeholder}
         className={inputClassName}
       />
