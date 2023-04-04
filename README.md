@@ -2,6 +2,13 @@
 
 Internz is a dynamic online platform designed to connect students with valuable internship opportunities. By showcasing a wide range of internships posted by companies across various industries
 
+[Figma](https://www.figma.com/file/qz6hTqvsvdldkx1fwTdEzo/Internz?node-id=90-177)
+
+[Trello](https://trello.com/b/z6RYVJl1/melonerna)
+
+
+[WCAG Dokumentation](https://github.com/Tobias-ChasStudent/Internz-Inlamning/blob/main/WCAG.md)
+
 ## Running the React App
 
 1. Install project dependencies.
